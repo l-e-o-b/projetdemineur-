@@ -1,0 +1,4 @@
+﻿  projet demineur.cpp
+C:\Users\lbouyat\source\repos\projet demnieur\projet demnieur\projet demineur.cpp(9,13): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+C:\Users\lbouyat\source\repos\projet demnieur\projet demnieur\projet demineur.cpp(179,13): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+  projet demnieur.vcxproj -> C:\Users\lbouyat\source\repos\projet demnieur\x64\Debug\projet demnieur.exe
