@@ -41,7 +41,7 @@ void PlacerMine(int tab[facile][facile], bool CaseVisible[facile][facile])
 {
 	int Mine = 0;
 
-	while (Mine < 12)
+	while (Mine < NbMines)
 	{
 		int ligne = rand() % 9;
 		int colonne = rand() % 9;		//test coordonnées mines ou non  
@@ -129,7 +129,10 @@ void ReveleCase(int tab[facile][facile], bool CaseVisible[facile][facile], int i
 						{
 							int ni = i + dx;
 							int nj = j + dy;
-							ReveleCase(tab, CaseVisible, ni, nj);
+							if (ni >= 0 && ni < 9 && nj >= 0 && nj < 9)
+							{
+								ReveleCase(tab, CaseVisible, ni, nj);
+							}
 						}
 					}
 				}
@@ -153,6 +156,20 @@ void ReveleMines(int tab[facile][facile], bool CaseVisible[facile][facile])
 				CaseVisible[i][j] = true;
 		}
 	}
+}
+
+
+bool victoire(int tab[facile][facile], bool CaseVisible[facile][facile])
+{
+	for (int i = 0; i < facile; i++)
+	{
+		for (int j = 0; j < facile; j++)
+		{
+			if (tab[i][j] != -1 && !CaseVisible[i][j])		// si case sans mine et pas encore revele alors pas encore gagner 
+				return false;		
+		}
+	}
+	return true;
 }
 
 
@@ -201,6 +218,12 @@ int main()
 				else
 				{
 					ReveleCase(tab, CaseVisible, i, j);
+					if (victoire(tab, CaseVisible))
+					{
+						gameover = true;
+						print_tab(tab, CaseVisible, caseFlag);
+						cout << " Félicitations ! Vous avez gagné ! " << endl;
+					}
 				}
 			}
 			else if (choix == 2)
